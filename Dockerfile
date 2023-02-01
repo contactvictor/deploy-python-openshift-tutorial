@@ -1,13 +1,10 @@
-from alpine:latest
-RUN apk add --no-cache py3-pip \
-    && pip install --upgrade pip
 
+FROM python:3.11
 WORKDIR /app
-COPY . /app
 
+COPY ./requirements.txt /app/
 RUN pip install -r requirements.txt
-
-
+COPY ./ /app/
 EXPOSE 5000
 
 ENTRYPOINT ["python3"]
